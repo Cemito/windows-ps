@@ -60,3 +60,18 @@ Get-AppxPackage *3dbuilder* | Remove-AppxPackage
 Get-AppxPackage *xboxapp* | Remove-AppxPackage
 Get-AppxPackage *officehub* | Remove-AppxPackage
 Get-AppxPackage *getstarted* | Remove-AppxPackage
+
+#### Rename Computer
+
+if ( $env:COMPUTERNAME -match "EC2AMAZ" )
+{
+    Write-Output "Computer name already setup as $env:COMPUTERNAME so not renaming computer."
+}
+else
+{
+    Write-Output "Setting computer name to 3VB-$cmdSerialNumber."
+    $cmdSerialNumber = (Get-WmiObject -class win32_bios).SerialNumber
+    $computer = "3VB-$SerialNumber"
+    #Rename-Computer -NewName $computer -Force
+}
+
