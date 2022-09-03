@@ -13,4 +13,6 @@ path\to\script\location\firststep.ps1
 ## Testing
 Tested on Windows Server 2016.
 
-
+## References
+- [Installing Tools Using Powershell and Chocolatey (Windows)](
+https://rafaelmedeiros94.medium.com/installing-tools-using-powershell-and-chocolatey-windows-60d02ff7a7b9)
