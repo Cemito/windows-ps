@@ -13,7 +13,7 @@ Else
     New-ItemProperty -Path $path -Name $name -Value 0 -Force
 }
 
-#### Instslls Chocolatey
+#### Installs Chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
 #Change here the packages you want to install
@@ -54,3 +54,9 @@ function Install-ChocoPackage {
 foreach($Package in $Packages){
     Install-ChocoPackage -PackageName $Package
 }
+
+#### Remove Windows Bloatware
+Get-AppxPackage *3dbuilder* | Remove-AppxPackage
+Get-AppxPackage *xboxapp* | Remove-AppxPackage
+Get-AppxPackage *officehub* | Remove-AppxPackage
+Get-AppxPackage *getstarted* | Remove-AppxPackage
