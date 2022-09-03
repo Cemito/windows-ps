@@ -75,3 +75,24 @@ else
     #Rename-Computer -NewName $computer -Force
 }
 
+#### New local admin user
+try {
+    $username = Read-Host -Prompt "Enter Local Admin Username"
+    $fullName = Read-Host -Prompt "Enter Local Admin Full Name"
+    $cmdSerialNumber = (Get-WmiObject -class win32_bios).SerialNumber
+    $Password = "3VB-$SerialNumber"
+    $securePassword = ConvertTo-SecureString $Password -AsPlainText -Force
+    New-LocalUser $username -Password $securePassword -FullName $fullName -Description $fullName -AccountNeverExpires -PasswordNeverExpires -ErrorAction Stop
+}
+catch {
+    $message = $_
+    Write-Warning "$message"
+}
+try {
+    Add-LocalGroupMember -Group "Administrators" -Member $Username -ErrorAction Stop
+}
+catch [Microsoft.PowerShell.Commands.MemberExistsException] {
+    $message = $_
+    Write-Warning "$message"
+}
+
