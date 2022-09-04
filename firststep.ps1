@@ -1,4 +1,10 @@
-param($username, $fullName)
+Param(
+    [parameter(Mandatory=$True)]
+    [string]$username,
+
+    [parameter(Mandatory=$True)]
+    [string]$fullName
+)
 
 #### Enable This PC on Desktop
 #HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel\ {20D04FE0-3AEA-1069-A2D8-08002B30309D} = 0/show , 1/hide
