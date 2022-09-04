@@ -6,12 +6,10 @@ $path="HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons
 $name="{20D04FE0-3AEA-1069-A2D8-08002B30309D}"
 $exist="Get-ItemProperty -Path $path -Name $name"
 
-if ($exist)
-{
+if ($exist) {
     Set-ItemProperty -Path $path -Name $name -Value 0 -Force
 }
-Else
-{
+Else {
     New-ItemProperty -Path $path -Name $name -Value 0 -Force
 }
 
@@ -30,7 +28,7 @@ function Install-ChocoPackage {
 
     $ChocoLibPath = "C:\ProgramData\chocolatey\lib"
 
-    if(-not(test-path $ChocoLibPath)){
+    if (-not(test-path $ChocoLibPath)){
         Set-ExecutionPolicy Bypass -Scope Process -Force;
         [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
         iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
@@ -47,13 +45,12 @@ function Install-ChocoPackage {
 
     }
     else {
-
         Write-host  "[INFO]$PackageName is already installed." -ForegroundColor Green
     }
 }
 
 #Loop through each package to install them
-foreach($Package in $Packages){
+foreach($Package in $Packages) {
     Install-ChocoPackage -PackageName $Package
 }
 
@@ -65,12 +62,10 @@ Get-AppxPackage *getstarted* | Remove-AppxPackage
 
 #### Rename Computer
 
-if ( $env:COMPUTERNAME -match "EC2AMAZ" )
-{
+if ( $env:COMPUTERNAME -match "EC2AMAZ" ) {
     Write-Output "Computer name already setup as $env:COMPUTERNAME so not renaming computer."
 }
-else
-{
+else {
     Write-Output "Setting computer name to 3VB-$cmdSerialNumber."
     $cmdSerialNumber = (Get-WmiObject -class win32_bios).SerialNumber
     $computer = "3VB-$SerialNumber"
@@ -88,11 +83,12 @@ catch {
     $message = $_
     Write-Warning "$message"
 }
-try {
+$Admins = Get-LocalGroupMember -Name Administrators | Select-Object -ExpandProperty name
+if ( $Admins -match $Username ) {
+    "$Username is a local administrator"
+}
+else {
+    "$Username is NOT a local administrator"
+    "Adding as local administrator"
     Add-LocalGroupMember -Group "Administrators" -Member $Username -ErrorAction Stop
 }
-catch [Microsoft.PowerShell.Commands.MemberExistsException] {
-    $message = $_
-    Write-Warning "$message"
-}
-

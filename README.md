@@ -2,7 +2,8 @@
 This script will help with setting up new laptops automating the manual steps required.
 - This script will enable My Computer on the desktop.
 - Use [Chocolatey](https://community.chocolatey.org/) to download and install packages of your choosing. 
-Currently, installs Firefox and VSCode. Bloatware programs such as Xbox, Get Office, Get started will also be removed.
+Currently, installs Firefox and VSCode. 
+- Bloatware programs such as Xbox, Get Office, Get started will also be removed.
 - Automatically renames the computer.
 - Creates a local user with user input and auto sets the user password.
 
