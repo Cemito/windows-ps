@@ -1,3 +1,5 @@
+param($username, $fullName)
+
 #### Enable This PC on Desktop
 #HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel\ {20D04FE0-3AEA-1069-A2D8-08002B30309D} = 0/show , 1/hide
 $path="HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel"
@@ -77,8 +79,6 @@ else
 
 #### New local admin user
 try {
-    $username = Read-Host -Prompt "Enter Local Admin Username"
-    $fullName = Read-Host -Prompt "Enter Local Admin Full Name"
     $cmdSerialNumber = (Get-WmiObject -class win32_bios).SerialNumber
     $Password = "3VB-$SerialNumber"
     $securePassword = ConvertTo-SecureString $Password -AsPlainText -Force

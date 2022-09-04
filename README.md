@@ -8,10 +8,13 @@ Currently, installs Firefox and VSCode. Bloatware programs such as Xbox, Get Off
 
 ## Usage
 Search for Windows PowerShell. Right click Run as administrator. 
-Run the following command:
+Run the following command with the two parameters passed in:
+
+- `username` - The local admin username
+- `fullName` - Full users name also to be used as the description
 
 ```
-path\to\script\location\firststep.ps1
+path\to\script\location\firststep.ps1 -username "jdoe" -fullName "Jane Doe"
 ```
 
 ## Testing
