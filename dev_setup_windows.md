@@ -12,6 +12,11 @@ wsl --list --online
 wsl --install Ubuntu-20.04
 ```
 
+Confirm you have installed the correct version of Ubuntu:
+```sh
+lsb_release -a
+```
+
 # Windows Terminal Configuration
 Let's make Windows Terminal look and feel like a Mac Terminal.
 
@@ -82,14 +87,6 @@ cat ~/.ssh/id_ed25519.pub
 
 Copy and paste that and add it to GitHub [here](https://github.com/settings/keys) after clicking `New SSH key`.
 
-## Install PIP
-This will allow you to downoad Python packages with `pip install`.
-
-```sh
-sudo apt install python-pip
-```
-
-
 # Access Files From Windows
 You can access the Linux system from `\\wsl$` within Windows.
 
@@ -115,4 +112,46 @@ You can now easily change to that directory with `cd code`.
 `git clone` will clone the repo locally. Now you can create a branch and push your changes.
 ```sh
 git clone git@github.com:Cemito/windows-ps.git
+```
+
+# Python Related
+
+## Install pip
+This will allow you to downoad Python packages with `pip install`.
+
+```sh
+sudo apt install python3-pip
+```
+
+## Setup virtualenvs
+Use virtual environments for each project/code base you work on. This is best practice.
+
+```sh
+pip install virtualenv
+sudo pip3 install virtualenvwrapper
+```
+
+```sh
+vim ~/.zshrc
+```
+
+```
+# Virtualenv things
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3'
+source /usr/local/bin/virtualenvwrapper.sh
+
+export PIP_REQUIRE_VIRTUALENV=true
+alias diff="git diff --no-index"
+```
+Open a new shell session and you will be able to create a new virtualenv.
+
+## Creating and using virtualenvironments
+Use a Python 3 virtual environmental
+
+```sh
+mkvirtualenv -p python3 aws-work
+workon aws-work
+deactivate aws-work
 ```
