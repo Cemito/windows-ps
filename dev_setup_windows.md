@@ -6,8 +6,10 @@
 Let's make Windows Terminal look and feel like a Mac Terminal.
 
 ## Install Ubuntu on Windows with WSL
+Launch Windows Terminal and run the following commands to install Ubuntu.
 ```
-wsl --install -d ubuntu
+wsl --list --online
+wsl --install Ubuntu-20.04
 ```
 
 ## Setting up WSL as the default profile
