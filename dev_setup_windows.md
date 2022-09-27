@@ -53,7 +53,6 @@ Before adding a new SSH key to the ssh-agent to manage your keys, you should hav
 ### Start the ssh-agent in the background.
 ```
 eval "$(ssh-agent -s)"
-
 ```
 
 ### Add your SSH private key to the ssh-agent.
@@ -85,6 +84,16 @@ From your terminal access that folder:
 ```
 cd /mnt/c/Users/username/code/
 ```
+
+## Create a Symlink
+So you do not have to remember the full path directory name every time. Create a Symlink in your home directory.
+
+```
+cd ~
+ln -s /mnt/c/Users/username/code/ .
+```
+
+You can now easily change to that directory with `cd code`.
 
 # Clone Git Repo
 
