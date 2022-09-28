@@ -12,7 +12,7 @@ wsl --list --online
 wsl --install Ubuntu-20.04
 ```
 
-Confirm you have installed the correct version of Ubuntu:
+Switch to Ubunutu Terminal first before typing the following command to confirm you have installed the correct version of Ubuntu:
 ```sh
 lsb_release -a
 ```
